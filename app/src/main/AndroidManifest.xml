@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SDKQA"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.SDKQA">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".video.VideoVodSimpleActivity"
+            android:exported="false"
+            android:label="Video VOD Simple"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:theme="@style/Theme.SDKQA" />
+
+        <activity
+            android:name=".video.VideoLocalActivity"
+            android:exported="false"
+            android:label="Video Local"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:theme="@style/Theme.SDKQA" />
+
+        <activity
+            android:name=".video.VideoLocalWithServiceActivity"
+            android:exported="false"
+            android:label="Video Local with Service"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.SDKQA" />
+
+        <activity
+            android:name=".video.VideoEpisodeActivity"
+            android:exported="false"
+            android:label="Video Episode"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.SDKQA" />
+
+        <activity
+            android:name=".audio.AudioAodSimpleActivity"
+            android:exported="false"
+            android:label="Audio AOD Simple"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:theme="@style/Theme.SDKQA" />
+
+        <activity
+            android:name=".audio.AudioAodWithServiceActivity"
+            android:exported="false"
+            android:label="Audio AOD with Service"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.SDKQA" />
+
+        <activity
+            android:name=".audio.AudioEpisodeActivity"
+            android:exported="false"
+            android:label="Audio Episode"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.SDKQA" />
+
+        <activity
+            android:name=".audio.AudioLocalActivity"
+            android:exported="false"
+            android:label="Audio Local"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:theme="@style/Theme.SDKQA" />
+
+        <activity
+            android:name=".audio.AudioLocalWithServiceActivity"
+            android:exported="false"
+            android:label="Audio Local with Service"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.SDKQA" />
+
+        <activity
+            android:name=".audio.AudioLiveActivity"
+            android:exported="false"
+            android:label="Audio Live"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:theme="@style/Theme.SDKQA" />
+
+        <activity
+            android:name=".audio.AudioLiveWithServiceActivity"
+            android:exported="false"
+            android:label="Audio Live with Service"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.SDKQA" />
+
+        <activity
+            android:name=".audio.AudioLiveDvrActivity"
+            android:exported="false"
+            android:label="Audio Live DVR"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.SDKQA" />
+
+        <activity
+            android:name=".audio.AudioMixedActivity"
+            android:exported="false"
+            android:label="Audio Mixed"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:theme="@style/Theme.SDKQA" />
+
+        <activity
+            android:name=".audio.AudioMixedWithServiceActivity"
+            android:exported="false"
+            android:label="Audio Mixed with Service"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.SDKQA" />
+
+        <activity
+            android:name=".video.VideoLiveActivity"
+            android:exported="false"
+            android:label="Video Live"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:theme="@style/Theme.SDKQA" />
+
+        <activity
+            android:name=".video.VideoLiveDvrActivity"
+            android:exported="false"
+            android:label="Video Live DVR"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:theme="@style/Theme.SDKQA" />
+
+        <activity
+            android:name=".video.VideoMixedActivity"
+            android:exported="false"
+            android:label="Video Mixed"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:theme="@style/Theme.SDKQA" />
+
+        <activity
+            android:name=".video.VideoMixedWithServiceActivity"
+            android:exported="false"
+            android:label="Video Mixed with Service"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.SDKQA" />
+
+        <activity
+            android:name=".video.VideoPipActivity"
+            android:exported="false"
+            android:label="Video Live PiP"
+            android:supportsPictureInPicture="true"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:theme="@style/Theme.SDKQA" />
+
+        <activity
+            android:name=".video.VideoReelActivity"
+            android:exported="false"
+            android:label="Video Reels"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:theme="@style/Theme.SDKQA" />
+
+        <activity
+            android:name=".video.VideoLiveWithScrollActivity"
+            android:exported="false"
+            android:label="Live with Scroll (PiP)"
+            android:supportsPictureInPicture="true"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:theme="@style/Theme.SDKQA" />
+
+        <activity
+            android:name=".video.VideoEpisodeManualActivity"
+            android:exported="false"
+            android:label="Next Episode (Manual)"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:theme="@style/Theme.SDKQA" />
+
+        <activity
+            android:name=".video.VideoEpisodeAutomaticActivity"
+            android:exported="false"
+            android:label="Next Episode (Auto API)"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:theme="@style/Theme.SDKQA" />
+
+        <service
+            android:name="am.mediastre.mediastreamplatformsdkandroid.MediastreamPlayerServiceWithSync"
+            android:exported="true"
+            android:foregroundServiceType="mediaPlayback">
+            <intent-filter>
+                <action android:name="androidx.media3.session.MediaSessionService" />
+            </intent-filter>
+        </service>
+
+    </application>
+
+</manifest>
