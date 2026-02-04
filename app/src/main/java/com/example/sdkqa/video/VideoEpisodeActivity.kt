@@ -61,8 +61,9 @@ class VideoEpisodeActivity : AppCompatActivity() {
         return MediastreamPlayerConfig().apply {
             id = "696c5d9f76d96a30f6542a8a"
             type = MediastreamPlayerConfig.VideoTypes.EPISODE
+            showDismissButton = true
             showControls = true
-            loadNextAutomatically = true
+            loadNextAutomatically = false
             //Uncomment to use development environment
             //environment = MediastreamPlayerConfig.Environment.DEV
         }
@@ -140,6 +141,11 @@ class VideoEpisodeActivity : AppCompatActivity() {
             override fun onPlayerClosed() {
                 Log.d(TAG, "onPlayerClosed")
                 finish()
+            }
+
+
+            override fun nextEpisodeIncoming(nextEpisodeId: String) {
+                Log.d(TAG, "nextEpisodeIncoming: $nextEpisodeId")
             }
 
             override fun onNext() {

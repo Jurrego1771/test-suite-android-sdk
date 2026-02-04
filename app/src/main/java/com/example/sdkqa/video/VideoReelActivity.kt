@@ -47,15 +47,15 @@ class VideoReelActivity : AppCompatActivity() {
         val config = MediastreamPlayerConfig().apply {
             // Player ID specific for Reels (as per documentation example)
             playerId = "6980ccd0654c284dc952b544"
-            
+
             // Initial video ID (optional, but good for entry point)
             id = "6980ce19baca04665e8e37b7"
             isDebug= true
             type = MediastreamPlayerConfig.VideoTypes.VOD
-
+            showControls=true
             // CRITICAL settings for Reels experience
             autoplay = true
-            showDismissButton = false
+            showDismissButton = true
             pauseOnScreenClick = FlagStatus.DISABLE // Reels don't pause on tap usually
             
             // Uncomment to use development environment

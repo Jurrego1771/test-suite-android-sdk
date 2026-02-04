@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "SDK-QA"
-        private const val SDK_VERSION = "10.0.0-alpha.02"
+        private const val SDK_VERSION = "10.0.0-alpha.03"
     }
 
     private lateinit var recyclerView: RecyclerView
@@ -109,6 +109,10 @@ class MainActivity : AppCompatActivity() {
             TestCase.TestCaseType.VIDEO_VOD_SIMPLE -> {
                 Log.d(TAG, "Launching Video VOD Simple test...")
                 startActivity(Intent(this, VideoVodSimpleActivity::class.java))
+            }
+            TestCase.TestCaseType.VIDEO_VOD_PIP -> {
+                Log.d(TAG, "Launching Video VOD PiP test...")
+                startActivity(Intent(this, com.example.sdkqa.video.VideoVodPipActivity::class.java))
             }
             TestCase.TestCaseType.VIDEO_LOCAL -> {
                 Log.d(TAG, "Launching Video Local test...")

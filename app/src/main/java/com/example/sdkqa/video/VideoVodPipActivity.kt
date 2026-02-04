@@ -15,14 +15,15 @@ import android.widget.FrameLayout
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.media3.ui.PlayerView
+import com.example.sdkqa.R
 import com.google.ads.interactivemedia.v3.api.AdError
 import com.google.ads.interactivemedia.v3.api.AdEvent
 import org.json.JSONObject
 
-class VideoPipActivity : AppCompatActivity() {
+class VideoVodPipActivity : AppCompatActivity() {
 
     companion object {
-        private const val TAG = "SDK-QA"
+        private const val TAG = "SDK-QA-VOD-PiP"
     }
 
     private var player: MediastreamPlayer? = null
@@ -56,8 +57,8 @@ class VideoPipActivity : AppCompatActivity() {
 
     private fun setupPlayer(mainMediaFrame: FrameLayout) {
         val config = MediastreamPlayerConfig().apply {
-            id = "5fd39e065d68477eaa1ccf5a"
-            type = MediastreamPlayerConfig.VideoTypes.LIVE
+            id = "696bc8a832ce0ef08c6fa0ef"
+            type = MediastreamPlayerConfig.VideoTypes.VOD
             pip = MediastreamPlayerConfig.FlagStatus.ENABLE
             enablePlayerZoom = true
             //Uncomment to use development environment
@@ -103,59 +104,23 @@ class VideoPipActivity : AppCompatActivity() {
                 Log.d(TAG, "playerViewReady")
             }
 
-            override fun onPlay() {
-                Log.d(TAG, "onPlay")
-            }
-
-            override fun onPause() {
-                Log.d(TAG, "onPause")
-            }
-
-            override fun onReady() {
-                Log.d(TAG, "onReady")
-            }
-
-            override fun onEnd() {
-                Log.d(TAG, "onEnd")
-            }
-
-            override fun onBuffering() {
-                Log.d(TAG, "onBuffering")
-            }
-
-            override fun onError(error: String?) {
-                Log.e(TAG, "onError: $error")
-            }
-
-            override fun onDismissButton() {
-                Log.d(TAG, "onDismissButton")
-            }
-
-            override fun onPlayerClosed() {
-                Log.d(TAG, "onPlayerClosed")
-            }
-
+            override fun onReady() { Log.d(TAG, "onReady") }
+            override fun onPlay() { Log.d(TAG, "onPlay") }
+            override fun onPause() { Log.d(TAG, "onPause") }
+            override fun onEnd() { Log.d(TAG, "onEnd") }
+            override fun onBuffering() { Log.d(TAG, "onBuffering") }
+            override fun onError(error: String?) { Log.e(TAG, "onError: $error") }
+            override fun onDismissButton() { finish() }
+            override fun onPlayerClosed() { finish() }
+            
             override fun onNext() {}
             override fun onPrevious() {}
-            override fun onFullscreen() {
-                Log.d(TAG, "onFullscreen")
-            }
-
-            override fun offFullscreen() {
-                Log.d(TAG, "offFullscreen")
-            }
-
+            override fun onFullscreen() {}
+            override fun offFullscreen() {}
             override fun onNewSourceAdded(config: MediastreamPlayerConfig) {}
             override fun onLocalSourceAdded() {}
-
-            override fun onAdEvents(type: AdEvent.AdEventType) {
-                Log.d(TAG, "onAdEvents: ${type.name}")
-            }
-
-            override fun onAdErrorEvent(error: AdError) {
-                Log.e(TAG, "onAdErrorEvent: ${error.message}")
-            }
-
+            override fun onAdEvents(type: AdEvent.AdEventType) {}
+            override fun onAdErrorEvent(error: AdError) {}
             override fun onConfigChange(config: MediastreamMiniPlayerConfig?) {}
             override fun onCastAvailable(state: Boolean?) {}
             override fun onCastSessionStarting() {}
@@ -167,19 +132,10 @@ class VideoPipActivity : AppCompatActivity() {
             override fun onCastSessionResumed() {}
             override fun onCastSessionResumeFailed() {}
             override fun onCastSessionSuspended() {}
-            override fun onPlaybackErrors(error: JSONObject?) {
-                Log.e(TAG, "onPlaybackErrors: $error")
-            }
-
-            override fun onEmbedErrors(error: JSONObject?) {
-                Log.e(TAG, "onEmbedErrors: $error")
-            }
-
+            override fun onPlaybackErrors(error: JSONObject?) {}
+            override fun onEmbedErrors(error: JSONObject?) {}
             override fun onLiveAudioCurrentSongChanged(data: JSONObject?) {}
-
-            override fun onPlayerReload() {
-                Log.d(TAG, "onPlayerReload")
-            }
+            override fun onPlayerReload() {}
         }
     }
 

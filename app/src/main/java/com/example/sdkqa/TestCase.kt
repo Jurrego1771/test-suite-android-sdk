@@ -37,7 +37,8 @@ data class TestCase(
         VIDEO_REELS,
         VIDEO_LIVE_SCROLL,
         VIDEO_EPISODE_MANUAL,
-        VIDEO_EPISODE_AUTO
+        VIDEO_EPISODE_AUTO,
+        VIDEO_VOD_PIP
     }
 
     companion object {
@@ -59,6 +60,7 @@ data class TestCase(
             TestCase(TestCaseType.AUDIO_MIXED_WITH_SERVICE, "Mixed Audio with Service", Category.AUDIO),
             // Video Test Cases
             TestCase(TestCaseType.VIDEO_VOD_SIMPLE, "VOD Simple", Category.VIDEO),
+            TestCase(TestCaseType.VIDEO_VOD_PIP, "VOD with PiP", Category.VIDEO),
             TestCase(TestCaseType.VIDEO_LOCAL, "Local Video", Category.VIDEO),
             TestCase(TestCaseType.VIDEO_LOCAL_WITH_SERVICE, "Local Video with Service", Category.VIDEO),
             TestCase(TestCaseType.VIDEO_EPISODE, "Episode", Category.VIDEO),
