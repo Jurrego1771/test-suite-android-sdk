@@ -29,8 +29,8 @@ class VideoEpisodeManualActivity : AppCompatActivity() {
     // Simulated Playlist
     private val playlist = listOf(
         "696c5d9f76d96a30f6542a8a", // Video 1
-        "66845564267425121334d743", // Video 2
-        "696bc8a832ce0ef08c6fa0ef"  // Video 3
+        "696c5dbb76d96a30f6542ab7", // Video 2
+        "69839661dabbf9ca486830c6"  // Video 3
     )
     private var currentIndex = 0
 
