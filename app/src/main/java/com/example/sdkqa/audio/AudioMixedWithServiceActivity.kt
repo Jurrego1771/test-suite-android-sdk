@@ -36,9 +36,9 @@ class AudioMixedWithServiceActivity : AppCompatActivity() {
         private const val TAG = "SDK-QA"
 
         // Content IDs
-        private const val AOD_ID = "67ae0ec86dcc4a0dca2e9b00"
-        private const val LIVE_ID = "5c915724519bce27671c4d15"
-        private const val EPISODE_ID = "6193f836de7392082f8377dc"
+        private const val AOD_ID = "696c625d32ce0ef08ca5ef9d"
+        private const val LIVE_ID = "6994f6128e4ea871f11730b9"
+        private const val EPISODE_ID = "696c6c6f6aaa3609e0741f3e"
     }
 
     private lateinit var container: FrameLayout

@@ -54,7 +54,7 @@ class AudioLiveDvrActivity : AppCompatActivity() {
     private val modes = arrayOf("Live", "DVR", "DVR Start", "DVR VOD")
 
     // Base configuration
-    private val baseId = "5c915724519bce27671c4d15"
+    private val baseId = "6994f6128e4ea871f11730b9"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

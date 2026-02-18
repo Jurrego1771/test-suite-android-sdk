@@ -53,7 +53,7 @@ class AudioLiveActivity : AppCompatActivity() {
 
     private fun setupPlayer(mainMediaFrame: FrameLayout) {
         val config = MediastreamPlayerConfig().apply {
-            id = "5c915724519bce27671c4d15"
+            id = "6994f6128e4ea871f11730b9"
             type = MediastreamPlayerConfig.VideoTypes.LIVE
             //Uncomment to use development environment
             //environment = MediastreamPlayerConfig.Environment.DEV

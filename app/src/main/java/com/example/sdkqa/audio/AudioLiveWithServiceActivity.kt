@@ -59,7 +59,7 @@ class AudioLiveWithServiceActivity : AppCompatActivity() {
 
     private fun createConfig(): MediastreamPlayerConfig {
         return MediastreamPlayerConfig().apply {
-            id = "5c915724519bce27671c4d15"
+            id = "6994f6128e4ea871f11730b9"
             type = MediastreamPlayerConfig.VideoTypes.LIVE
             playerType = MediastreamPlayerConfig.PlayerType.AUDIO
             showControls = true

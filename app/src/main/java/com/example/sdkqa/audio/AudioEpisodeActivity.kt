@@ -59,7 +59,7 @@ class AudioEpisodeActivity : AppCompatActivity() {
 
     private fun createConfig(): MediastreamPlayerConfig {
         return MediastreamPlayerConfig().apply {
-            id = "6193f836de7392082f8377dc"
+            id = "696c6c6f6aaa3609e0741f3e"
             type = MediastreamPlayerConfig.VideoTypes.EPISODE
             showControls = true
             videoFormat = MediastreamPlayerConfig.AudioVideoFormat.MP3
