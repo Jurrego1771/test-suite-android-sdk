@@ -14,6 +14,7 @@ import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.media3.ui.PlayerView
 import com.example.sdkqa.R
+import com.example.sdkqa.testing.TestEventBus
 import com.google.ads.interactivemedia.v3.api.AdError
 import com.google.ads.interactivemedia.v3.api.AdEvent
 import org.json.JSONObject
@@ -146,18 +147,25 @@ class VideoLiveDvrActivity : AppCompatActivity() {
         return object : MediastreamPlayerCallback {
             override fun playerViewReady(msplayerView: PlayerView?) {
                 Log.d(TAG, "playerViewReady")
+                TestEventBus.record(
+                    name = "VideoLiveDvr.playerViewReady",
+                    data = mapOf("hasPlayerView" to ((msplayerView != null).toString()))
+                )
             }
 
             override fun onPlay() {
                 Log.d(TAG, "onPlay")
+                TestEventBus.record(name = "VideoLiveDvr.onPlay")
             }
 
             override fun onPause() {
                 Log.d(TAG, "onPause")
+                TestEventBus.record(name = "VideoLiveDvr.onPause")
             }
 
             override fun onReady() {
                 Log.d(TAG, "onReady")
+                TestEventBus.record(name = "VideoLiveDvr.onReady")
             }
 
             override fun onEnd() {
@@ -166,10 +174,12 @@ class VideoLiveDvrActivity : AppCompatActivity() {
 
             override fun onBuffering() {
                 Log.d(TAG, "onBuffering")
+                TestEventBus.record(name = "VideoLiveDvr.onBuffering")
             }
 
             override fun onError(error: String?) {
                 Log.e(TAG, "onError: $error")
+                TestEventBus.record(name = "VideoLiveDvr.onError", data = mapOf("error" to (error ?: "")))
             }
 
             override fun onDismissButton() {

@@ -13,6 +13,7 @@ import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.media3.ui.PlayerView
+import com.example.sdkqa.testing.TestEventBus
 import com.google.ads.interactivemedia.v3.api.AdError
 import com.google.ads.interactivemedia.v3.api.AdEvent
 import org.json.JSONObject
@@ -114,18 +115,38 @@ class VideoEpisodeManualActivity : AppCompatActivity() {
             }
 
             // Standard callbacks
-            override fun playerViewReady(msplayerView: PlayerView?) {}
-            override fun onPlay() { Log.d(TAG, "onPlay") }
-            override fun onPause() { Log.d(TAG, "onPause") }
-            override fun onReady() { Log.d(TAG, "onReady") }
+            override fun playerViewReady(msplayerView: PlayerView?) {
+                TestEventBus.record(
+                    name = "VideoEpisodeManual.playerViewReady",
+                    data = mapOf("hasPlayerView" to ((msplayerView != null).toString()))
+                )
+            }
+            override fun onPlay() {
+                Log.d(TAG, "onPlay")
+                TestEventBus.record(name = "VideoEpisodeManual.onPlay")
+            }
+            override fun onPause() {
+                Log.d(TAG, "onPause")
+                TestEventBus.record(name = "VideoEpisodeManual.onPause")
+            }
+            override fun onReady() {
+                Log.d(TAG, "onReady")
+                TestEventBus.record(name = "VideoEpisodeManual.onReady")
+            }
             override fun onEnd() { 
                 Log.d(TAG, "onEnd")
                 if (currentIndex >= playlist.size - 1) {
                     Toast.makeText(this@VideoEpisodeManualActivity, "Playlist Ended", Toast.LENGTH_LONG).show()
                 }
             }
-            override fun onBuffering() { Log.d(TAG, "onBuffering") }
-            override fun onError(error: String?) { Log.e(TAG, "onError: $error") }
+            override fun onBuffering() {
+                Log.d(TAG, "onBuffering")
+                TestEventBus.record(name = "VideoEpisodeManual.onBuffering")
+            }
+            override fun onError(error: String?) {
+                Log.e(TAG, "onError: $error")
+                TestEventBus.record(name = "VideoEpisodeManual.onError", data = mapOf("error" to (error ?: "")))
+            }
             override fun onDismissButton() { finish() }
             override fun onPlayerClosed() { finish() }
             override fun onNext() {}
