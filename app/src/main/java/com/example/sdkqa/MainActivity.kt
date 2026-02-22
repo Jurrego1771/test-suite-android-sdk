@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sdkqa.testing.TestEventBus
 import com.example.sdkqa.audio.AudioAodSimpleActivity
 import com.example.sdkqa.audio.AudioAodWithServiceActivity
 import com.example.sdkqa.audio.AudioEpisodeActivity
@@ -63,103 +64,134 @@ class MainActivity : AppCompatActivity() {
 
     private fun onTestCaseClicked(testCase: TestCase) {
         Log.d(TAG, "Selected test case: ${testCase.getDisplayTitle()} (${testCase.type})")
+        TestEventBus.record(
+            name = "MainActivity.SelectedTestCase",
+            data = mapOf(
+                "displayTitle" to testCase.getDisplayTitle(),
+                "type" to testCase.type.name,
+            )
+        )
 
         // TODO: Launch corresponding activity based on test case type
         when (testCase.type) {
             TestCase.TestCaseType.AUDIO_AOD_SIMPLE -> {
                 Log.d(TAG, "Launching Audio AOD Simple test...")
+                TestEventBus.record(name = "MainActivity.Launching", data = mapOf("type" to testCase.type.name))
                 startActivity(Intent(this, AudioAodSimpleActivity::class.java))
             }
             TestCase.TestCaseType.AUDIO_AOD_WITH_SERVICE -> {
                 Log.d(TAG, "Launching Audio AOD with Service test...")
+                TestEventBus.record(name = "MainActivity.Launching", data = mapOf("type" to testCase.type.name))
                 startActivity(Intent(this, AudioAodWithServiceActivity::class.java))
             }
             TestCase.TestCaseType.AUDIO_EPISODE -> {
                 Log.d(TAG, "Launching Audio Episode test...")
+                TestEventBus.record(name = "MainActivity.Launching", data = mapOf("type" to testCase.type.name))
                 startActivity(Intent(this, AudioEpisodeActivity::class.java))
             }
             TestCase.TestCaseType.AUDIO_LOCAL -> {
                 Log.d(TAG, "Launching Audio Local test...")
+                TestEventBus.record(name = "MainActivity.Launching", data = mapOf("type" to testCase.type.name))
                 startActivity(Intent(this, AudioLocalActivity::class.java))
             }
             TestCase.TestCaseType.AUDIO_LOCAL_WITH_SERVICE -> {
                 Log.d(TAG, "Launching Audio Local with Service test...")
+                TestEventBus.record(name = "MainActivity.Launching", data = mapOf("type" to testCase.type.name))
                 startActivity(Intent(this, AudioLocalWithServiceActivity::class.java))
             }
             TestCase.TestCaseType.AUDIO_LIVE -> {
                 Log.d(TAG, "Launching Audio Live test...")
+                TestEventBus.record(name = "MainActivity.Launching", data = mapOf("type" to testCase.type.name))
                 startActivity(Intent(this, AudioLiveActivity::class.java))
             }
             TestCase.TestCaseType.AUDIO_LIVE_WITH_SERVICE -> {
                 Log.d(TAG, "Launching Audio Live with Service test...")
+                TestEventBus.record(name = "MainActivity.Launching", data = mapOf("type" to testCase.type.name))
                 startActivity(Intent(this, AudioLiveWithServiceActivity::class.java))
             }
             TestCase.TestCaseType.AUDIO_LIVE_DVR -> {
                 Log.d(TAG, "Launching Audio Live DVR test...")
+                TestEventBus.record(name = "MainActivity.Launching", data = mapOf("type" to testCase.type.name))
                 startActivity(Intent(this, AudioLiveDvrActivity::class.java))
             }
             TestCase.TestCaseType.AUDIO_MIXED -> {
                 Log.d(TAG, "Launching Audio Mixed test...")
+                TestEventBus.record(name = "MainActivity.Launching", data = mapOf("type" to testCase.type.name))
                 startActivity(Intent(this, AudioMixedActivity::class.java))
             }
             TestCase.TestCaseType.AUDIO_MIXED_WITH_SERVICE -> {
                 Log.d(TAG, "Launching Audio Mixed with Service test...")
+                TestEventBus.record(name = "MainActivity.Launching", data = mapOf("type" to testCase.type.name))
                 startActivity(Intent(this, AudioMixedWithServiceActivity::class.java))
             }
             TestCase.TestCaseType.VIDEO_VOD_SIMPLE -> {
                 Log.d(TAG, "Launching Video VOD Simple test...")
+                TestEventBus.record(name = "MainActivity.Launching", data = mapOf("type" to testCase.type.name))
                 startActivity(Intent(this, VideoVodSimpleActivity::class.java))
             }
             TestCase.TestCaseType.VIDEO_VOD_PIP -> {
                 Log.d(TAG, "Launching Video VOD PiP test...")
+                TestEventBus.record(name = "MainActivity.Launching", data = mapOf("type" to testCase.type.name))
                 startActivity(Intent(this, com.example.sdkqa.video.VideoVodPipActivity::class.java))
             }
             TestCase.TestCaseType.VIDEO_LOCAL -> {
                 Log.d(TAG, "Launching Video Local test...")
+                TestEventBus.record(name = "MainActivity.Launching", data = mapOf("type" to testCase.type.name))
                 startActivity(Intent(this, VideoLocalActivity::class.java))
             }
             TestCase.TestCaseType.VIDEO_LOCAL_WITH_SERVICE -> {
                 Log.d(TAG, "Launching Video Local with Service test...")
+                TestEventBus.record(name = "MainActivity.Launching", data = mapOf("type" to testCase.type.name))
                 startActivity(Intent(this, VideoLocalWithServiceActivity::class.java))
             }
             TestCase.TestCaseType.VIDEO_EPISODE -> {
                 Log.d(TAG, "Launching Video Episode test...")
+                TestEventBus.record(name = "MainActivity.Launching", data = mapOf("type" to testCase.type.name))
                 startActivity(Intent(this, VideoEpisodeActivity::class.java))
             }
             TestCase.TestCaseType.VIDEO_LIVE -> {
                 Log.d(TAG, "Launching Video Live test...")
+                TestEventBus.record(name = "MainActivity.Launching", data = mapOf("type" to testCase.type.name))
                 startActivity(Intent(this, VideoLiveActivity::class.java))
             }
             TestCase.TestCaseType.VIDEO_LIVE_DVR -> {
                 Log.d(TAG, "Launching Video Live DVR test...")
+                TestEventBus.record(name = "MainActivity.Launching", data = mapOf("type" to testCase.type.name))
                 startActivity(Intent(this, VideoLiveDvrActivity::class.java))
             }
             TestCase.TestCaseType.VIDEO_MIXED -> {
                 Log.d(TAG, "Launching Video Mixed test...")
+                TestEventBus.record(name = "MainActivity.Launching", data = mapOf("type" to testCase.type.name))
                 startActivity(Intent(this, VideoMixedActivity::class.java))
             }
             TestCase.TestCaseType.VIDEO_MIXED_WITH_SERVICE -> {
                 Log.d(TAG, "Launching Video Mixed with Service test...")
+                TestEventBus.record(name = "MainActivity.Launching", data = mapOf("type" to testCase.type.name))
                 startActivity(Intent(this, VideoMixedWithServiceActivity::class.java))
             }
             TestCase.TestCaseType.VIDEO_LIVE_PIP -> {
                 Log.d(TAG, "Launching Video Live with PiP test...")
+                TestEventBus.record(name = "MainActivity.Launching", data = mapOf("type" to testCase.type.name))
                 startActivity(Intent(this, com.example.sdkqa.video.VideoPipActivity::class.java))
             }
             TestCase.TestCaseType.VIDEO_REELS -> {
                 Log.d(TAG, "Launching Video Reels test...")
+                TestEventBus.record(name = "MainActivity.Launching", data = mapOf("type" to testCase.type.name))
                 startActivity(Intent(this, com.example.sdkqa.video.VideoReelActivity::class.java))
             }
             TestCase.TestCaseType.VIDEO_LIVE_SCROLL -> {
                 Log.d(TAG, "Launching Video Live Scroll test...")
+                TestEventBus.record(name = "MainActivity.Launching", data = mapOf("type" to testCase.type.name))
                 startActivity(Intent(this, com.example.sdkqa.video.VideoLiveWithScrollActivity::class.java))
             }
             TestCase.TestCaseType.VIDEO_EPISODE_MANUAL -> {
                 Log.d(TAG, "Launching Video Episode Manual test...")
+                TestEventBus.record(name = "MainActivity.Launching", data = mapOf("type" to testCase.type.name))
                 startActivity(Intent(this, com.example.sdkqa.video.VideoEpisodeManualActivity::class.java))
             }
             TestCase.TestCaseType.VIDEO_EPISODE_AUTO -> {
                 Log.d(TAG, "Launching Video Episode Auto test...")
+                TestEventBus.record(name = "MainActivity.Launching", data = mapOf("type" to testCase.type.name))
                 startActivity(Intent(this, com.example.sdkqa.video.VideoEpisodeAutomaticActivity::class.java))
             }
         }
