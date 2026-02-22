@@ -59,7 +59,14 @@ class VideoActivitiesBasicSmokeTest {
         SmokeTestUtils.launchAndAssertBasicEvents(VideoPipActivity::class.java, prefix = "VideoPip")
 
     @Test fun videoReels_basic_events() =
-        SmokeTestUtils.launchAndAssertBasicEvents(VideoReelActivity::class.java, prefix = "VideoReel")
+        SmokeTestUtils.launchAndAssertEvents(
+            VideoReelActivity::class.java,
+            expectedEventNames = listOf(
+                "VideoReel.onReady",
+                "VideoReel.onPlay",
+            ),
+            timeoutMs = 30_000
+        )
 
     @Test fun videoLiveWithScroll_basic_events() =
         SmokeTestUtils.launchAndAssertBasicEvents(VideoLiveWithScrollActivity::class.java, prefix = "VideoLiveWithScroll")

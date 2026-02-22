@@ -21,6 +21,20 @@ object SmokeTestUtils {
         }
     }
 
+    fun <T : Activity> launchAndAssertEvents(
+        activityClass: Class<T>,
+        expectedEventNames: List<String>,
+        timeoutMs: Long = 30_000,
+    ) {
+        TestEventBus.clear()
+        val scenario = ActivityScenario.launch(activityClass)
+        try {
+            assertEvents(expectedEventNames = expectedEventNames, timeoutMs = timeoutMs)
+        } finally {
+            scenario.close()
+        }
+    }
+
     fun assertBasicEvents(prefix: String, timeoutMs: Long = 30_000) {
         val expected = listOf(
             "$prefix.onBuffering",
@@ -29,15 +43,23 @@ object SmokeTestUtils {
             "$prefix.playerViewReady",
         )
 
-        val events = TestEventBus.awaitAll(expectedNames = expected, timeoutMs = timeoutMs, pollIntervalMs = 150)
+        assertEvents(expectedEventNames = expected, timeoutMs = timeoutMs, context = "Prefix: $prefix")
+    }
+
+    fun assertEvents(
+        expectedEventNames: List<String>,
+        timeoutMs: Long = 30_000,
+        context: String? = null,
+    ) {
+        val events = TestEventBus.awaitAll(expectedNames = expectedEventNames, timeoutMs = timeoutMs, pollIntervalMs = 150)
         val names = events.map { it.name }.toSet()
-        val missing = expected.filterNot { it in names }
+        val missing = expectedEventNames.filterNot { it in names }
 
         if (missing.isNotEmpty()) {
             fail(
                 buildString {
                     appendLine("No se encontraron todos los eventos esperados antes del timeout.")
-                    appendLine("Prefix: $prefix")
+                    if (!context.isNullOrBlank()) appendLine(context)
                     appendLine("Faltantes (${missing.size}):")
                     missing.forEach { appendLine("- $it") }
                     appendLine()
