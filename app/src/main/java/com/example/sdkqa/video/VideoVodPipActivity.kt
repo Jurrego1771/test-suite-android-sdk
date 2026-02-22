@@ -16,6 +16,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.media3.ui.PlayerView
 import com.example.sdkqa.R
+import com.example.sdkqa.testing.TestEventBus
 import com.google.ads.interactivemedia.v3.api.AdError
 import com.google.ads.interactivemedia.v3.api.AdEvent
 import org.json.JSONObject
@@ -102,14 +103,33 @@ class VideoVodPipActivity : AppCompatActivity() {
         return object : MediastreamPlayerCallback {
             override fun playerViewReady(msplayerView: PlayerView?) {
                 Log.d(TAG, "playerViewReady")
+                TestEventBus.record(
+                    name = "VideoVodPip.playerViewReady",
+                    data = mapOf("hasPlayerView" to ((msplayerView != null).toString()))
+                )
             }
 
-            override fun onReady() { Log.d(TAG, "onReady") }
-            override fun onPlay() { Log.d(TAG, "onPlay") }
-            override fun onPause() { Log.d(TAG, "onPause") }
+            override fun onReady() {
+                Log.d(TAG, "onReady")
+                TestEventBus.record(name = "VideoVodPip.onReady")
+            }
+            override fun onPlay() {
+                Log.d(TAG, "onPlay")
+                TestEventBus.record(name = "VideoVodPip.onPlay")
+            }
+            override fun onPause() {
+                Log.d(TAG, "onPause")
+                TestEventBus.record(name = "VideoVodPip.onPause")
+            }
             override fun onEnd() { Log.d(TAG, "onEnd") }
-            override fun onBuffering() { Log.d(TAG, "onBuffering") }
-            override fun onError(error: String?) { Log.e(TAG, "onError: $error") }
+            override fun onBuffering() {
+                Log.d(TAG, "onBuffering")
+                TestEventBus.record(name = "VideoVodPip.onBuffering")
+            }
+            override fun onError(error: String?) {
+                Log.e(TAG, "onError: $error")
+                TestEventBus.record(name = "VideoVodPip.onError", data = mapOf("error" to (error ?: "")))
+            }
             override fun onDismissButton() { finish() }
             override fun onPlayerClosed() { finish() }
             

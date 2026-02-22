@@ -14,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.media3.ui.PlayerView
+import com.example.sdkqa.testing.TestEventBus
 import com.google.ads.interactivemedia.v3.api.AdError
 import com.google.ads.interactivemedia.v3.api.AdEvent
 import org.json.JSONObject
@@ -116,14 +117,32 @@ class VideoEpisodeAutomaticActivity : AppCompatActivity() {
             }
 
             // Standard callbacks
-            override fun playerViewReady(msplayerView: PlayerView?) {}
-            override fun onPlay() { Log.d(TAG, "onPlay") }
-            override fun onPause() { Log.d(TAG, "onPause") }
-            override fun onReady() { Log.d(TAG, "onReady") }
+            override fun playerViewReady(msplayerView: PlayerView?) {
+                TestEventBus.record(
+                    name = "VideoEpisodeAuto.playerViewReady",
+                    data = mapOf("hasPlayerView" to ((msplayerView != null).toString()))
+                )
+            }
+            override fun onPlay() {
+                Log.d(TAG, "onPlay")
+                TestEventBus.record(name = "VideoEpisodeAuto.onPlay")
+            }
+            override fun onPause() {
+                Log.d(TAG, "onPause")
+                TestEventBus.record(name = "VideoEpisodeAuto.onPause")
+            }
+            override fun onReady() {
+                Log.d(TAG, "onReady")
+                TestEventBus.record(name = "VideoEpisodeAuto.onReady")
+            }
             override fun onEnd() { Log.d(TAG, "onEnd") }
-            override fun onBuffering() { Log.d(TAG, "onBuffering") }
+            override fun onBuffering() {
+                Log.d(TAG, "onBuffering")
+                TestEventBus.record(name = "VideoEpisodeAuto.onBuffering")
+            }
             override fun onError(error: String?) { 
                 Log.e(TAG, "onError: $error")
+                TestEventBus.record(name = "VideoEpisodeAuto.onError", data = mapOf("error" to (error ?: "")))
                 runOnUiThread { infoText.text = "Error: $error"; infoText.setTextColor(Color.RED) }
             }
             override fun onDismissButton() { finish() }

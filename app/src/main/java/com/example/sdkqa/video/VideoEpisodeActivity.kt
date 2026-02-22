@@ -19,6 +19,7 @@ import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
 import androidx.media3.ui.PlayerView
 import com.example.sdkqa.R
+import com.example.sdkqa.testing.TestEventBus
 import com.google.ads.interactivemedia.v3.api.AdError
 import com.google.ads.interactivemedia.v3.api.AdEvent
 import com.google.common.util.concurrent.ListenableFuture
@@ -107,18 +108,25 @@ class VideoEpisodeActivity : AppCompatActivity() {
         return object : MediastreamPlayerCallback {
             override fun playerViewReady(msplayerView: PlayerView?) {
                 Log.d(TAG, "playerViewReady")
+                TestEventBus.record(
+                    name = "VideoEpisode.playerViewReady",
+                    data = mapOf("hasPlayerView" to ((msplayerView != null).toString()))
+                )
             }
 
             override fun onPlay() {
                 Log.d(TAG, "onPlay")
+                TestEventBus.record(name = "VideoEpisode.onPlay")
             }
 
             override fun onPause() {
                 Log.d(TAG, "onPause")
+                TestEventBus.record(name = "VideoEpisode.onPause")
             }
 
             override fun onReady() {
                 Log.d(TAG, "onReady")
+                TestEventBus.record(name = "VideoEpisode.onReady")
             }
 
             override fun onEnd() {
@@ -127,10 +135,12 @@ class VideoEpisodeActivity : AppCompatActivity() {
 
             override fun onBuffering() {
                 Log.d(TAG, "onBuffering")
+                TestEventBus.record(name = "VideoEpisode.onBuffering")
             }
 
             override fun onError(error: String?) {
                 Log.e(TAG, "onError: $error")
+                TestEventBus.record(name = "VideoEpisode.onError", data = mapOf("error" to (error ?: "")))
                 Toast.makeText(this@VideoEpisodeActivity, error, Toast.LENGTH_LONG).show()
             }
 

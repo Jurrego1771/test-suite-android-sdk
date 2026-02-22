@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.media3.ui.PlayerView
+import com.example.sdkqa.testing.TestEventBus
 import com.google.ads.interactivemedia.v3.api.AdError
 import com.google.ads.interactivemedia.v3.api.AdEvent
 import org.json.JSONObject
@@ -76,18 +77,25 @@ class VideoLocalActivity : AppCompatActivity() {
         return object : MediastreamPlayerCallback {
             override fun playerViewReady(msplayerView: PlayerView?) {
                 Log.d(TAG, "playerViewReady")
+                TestEventBus.record(
+                    name = "VideoLocal.playerViewReady",
+                    data = mapOf("hasPlayerView" to ((msplayerView != null).toString()))
+                )
             }
 
             override fun onPlay() {
                 Log.d(TAG, "onPlay")
+                TestEventBus.record(name = "VideoLocal.onPlay")
             }
 
             override fun onPause() {
                 Log.d(TAG, "onPause")
+                TestEventBus.record(name = "VideoLocal.onPause")
             }
 
             override fun onReady() {
                 Log.d(TAG, "onReady")
+                TestEventBus.record(name = "VideoLocal.onReady")
             }
 
             override fun onEnd() {
@@ -96,10 +104,12 @@ class VideoLocalActivity : AppCompatActivity() {
 
             override fun onBuffering() {
                 Log.d(TAG, "onBuffering")
+                TestEventBus.record(name = "VideoLocal.onBuffering")
             }
 
             override fun onError(error: String?) {
                 Log.e(TAG, "onError: $error")
+                TestEventBus.record(name = "VideoLocal.onError", data = mapOf("error" to (error ?: "")))
             }
 
             override fun onDismissButton() {

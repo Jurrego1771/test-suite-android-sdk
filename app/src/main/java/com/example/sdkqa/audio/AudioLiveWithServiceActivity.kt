@@ -19,6 +19,7 @@ import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
 import androidx.media3.ui.PlayerView
 import com.example.sdkqa.R
+import com.example.sdkqa.testing.TestEventBus
 import com.google.ads.interactivemedia.v3.api.AdError
 import com.google.ads.interactivemedia.v3.api.AdEvent
 import com.google.common.util.concurrent.ListenableFuture
@@ -106,18 +107,25 @@ class AudioLiveWithServiceActivity : AppCompatActivity() {
         return object : MediastreamPlayerCallback {
             override fun playerViewReady(msplayerView: PlayerView?) {
                 Log.d(TAG, "playerViewReady")
+                TestEventBus.record(
+                    name = "AudioLiveWithService.playerViewReady",
+                    data = mapOf("hasPlayerView" to ((msplayerView != null).toString()))
+                )
             }
 
             override fun onPlay() {
                 Log.d(TAG, "onPlay")
+                TestEventBus.record(name = "AudioLiveWithService.onPlay")
             }
 
             override fun onPause() {
                 Log.d(TAG, "onPause")
+                TestEventBus.record(name = "AudioLiveWithService.onPause")
             }
 
             override fun onReady() {
                 Log.d(TAG, "onReady")
+                TestEventBus.record(name = "AudioLiveWithService.onReady")
             }
 
             override fun onEnd() {
@@ -126,10 +134,12 @@ class AudioLiveWithServiceActivity : AppCompatActivity() {
 
             override fun onBuffering() {
                 Log.d(TAG, "onBuffering")
+                TestEventBus.record(name = "AudioLiveWithService.onBuffering")
             }
 
             override fun onError(error: String?) {
                 Log.e(TAG, "onError: $error")
+                TestEventBus.record(name = "AudioLiveWithService.onError", data = mapOf("error" to (error ?: "")))
                 Toast.makeText(this@AudioLiveWithServiceActivity, error, Toast.LENGTH_LONG).show()
             }
 
