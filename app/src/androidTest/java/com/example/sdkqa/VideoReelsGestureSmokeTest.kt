@@ -2,14 +2,20 @@ package com.example.sdkqa
 
 import android.Manifest
 import android.os.SystemClock
+import android.view.View
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.swipeUp
+import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.GrantPermissionRule
 import com.example.sdkqa.testing.TestEventBus
 import com.example.sdkqa.video.VideoReelActivity
+import org.hamcrest.Matcher
+import org.hamcrest.TypeSafeMatcher
 import org.junit.Assert.assertTrue
 import org.junit.Assert.fail
 import org.junit.Rule
@@ -38,6 +44,15 @@ class VideoReelsGestureSmokeTest {
                 timeoutMs = 30_000,
                 context = "Startup Reels"
             )
+
+            val reelsVisibilityButtonId =
+                resolveFirstId(names = listOf("reels_visibility_button", "reels_visbility_button"))
+            assertTrue(
+                "No se encontró el id de reels visibility button. Probé: reels_visibility_button, reels_visbility_button",
+                reelsVisibilityButtonId != 0
+            )
+            // Reels suele tener múltiples items pre-cargados con el mismo id. Tomamos el primer match visible.
+            onView(withIndex(withId(reelsVisibilityButtonId), 0)).check(matches(isDisplayed()))
 
             repeat(3) { idx ->
                 TestEventBus.clear()
@@ -75,6 +90,28 @@ class VideoReelsGestureSmokeTest {
             }
         } finally {
             scenario.close()
+        }
+    }
+
+    private fun resolveFirstId(names: List<String>): Int {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        return names.firstNotNullOfOrNull { name ->
+            context.resources.getIdentifier(name, "id", context.packageName).takeIf { it != 0 }
+        } ?: 0
+    }
+
+    private fun withIndex(matcher: Matcher<View>, index: Int): Matcher<View> {
+        return object : TypeSafeMatcher<View>() {
+            var currentIndex = 0
+
+            override fun describeTo(description: org.hamcrest.Description) {
+                description.appendText("withIndex($index): ")
+                matcher.describeTo(description)
+            }
+
+            override fun matchesSafely(view: View): Boolean {
+                return matcher.matches(view) && currentIndex++ == index
+            }
         }
     }
 }
