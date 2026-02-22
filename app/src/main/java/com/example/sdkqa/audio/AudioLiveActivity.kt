@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.media3.ui.PlayerView
+import com.example.sdkqa.testing.TestEventBus
 import com.google.ads.interactivemedia.v3.api.AdError
 import com.google.ads.interactivemedia.v3.api.AdEvent
 import org.json.JSONObject
@@ -74,30 +75,40 @@ class AudioLiveActivity : AppCompatActivity() {
         return object : MediastreamPlayerCallback {
             override fun playerViewReady(msplayerView: PlayerView?) {
                 Log.d(TAG, "playerViewReady")
+                TestEventBus.record(
+                    name = "AudioLive.playerViewReady",
+                    data = mapOf("hasPlayerView" to ((msplayerView != null).toString()))
+                )
             }
 
             override fun onPlay() {
                 Log.d(TAG, "onPlay")
+                TestEventBus.record(name = "AudioLive.onPlay")
             }
 
             override fun onPause() {
                 Log.d(TAG, "onPause")
+                TestEventBus.record(name = "AudioLive.onPause")
             }
 
             override fun onReady() {
                 Log.d(TAG, "onReady")
+                TestEventBus.record(name = "AudioLive.onReady")
             }
 
             override fun onEnd() {
                 Log.d(TAG, "onEnd")
+                TestEventBus.record(name = "AudioLive.onEnd")
             }
 
             override fun onBuffering() {
                 Log.d(TAG, "onBuffering")
+                TestEventBus.record(name = "AudioLive.onBuffering")
             }
 
             override fun onError(error: String?) {
                 Log.e(TAG, "onError: $error")
+                TestEventBus.record(name = "AudioLive.onError", data = mapOf("error" to (error ?: "")))
             }
 
             override fun onDismissButton() {
@@ -150,6 +161,7 @@ class AudioLiveActivity : AppCompatActivity() {
 
             override fun onLiveAudioCurrentSongChanged(data: JSONObject?) {
                 Log.d(TAG, "onLiveAudioCurrentSongChanged: $data")
+                TestEventBus.record(name = "AudioLive.onLiveAudioCurrentSongChanged")
             }
 
             override fun onPlayerReload() {
